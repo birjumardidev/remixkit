@@ -160,30 +160,30 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       <header className="sticky top-0 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900"
+            className="flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900 flex-shrink-0"
           >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Gallery
+            <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+            <span className="hidden sm:inline">Back to Gallery</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 flex-shrink-0">
               <Wand2 className="h-4 w-4 text-white" />
             </div>
-            <span className="text-sm font-bold text-neutral-900">RemixKit</span>
+            <span className="text-sm font-bold text-neutral-900 hidden sm:inline">RemixKit</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-neutral-500">{user?.email}</span>
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-auto">
+            <span className="text-xs text-neutral-500 hidden sm:inline max-w-[150px] truncate">{user?.email}</span>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => signOut()}
-              className="gap-2"
+              className="gap-2 whitespace-nowrap"
             >
-              <LogOut className="h-4 w-4" />
-              Sign Out
+              <LogOut className="h-4 w-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Sign Out</span>
             </Button>
           </div>
         </div>
