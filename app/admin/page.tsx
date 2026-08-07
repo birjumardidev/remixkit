@@ -172,10 +172,14 @@ export default function AdminPage() {
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 flex-shrink-0">
               <Wand2 className="h-4 w-4 text-white" />
             </div>
-            <span className="text-sm font-bold text-neutral-900 hidden sm:inline">RemixKit</span>
+            <span className="text-sm font-bold text-neutral-900 hidden sm:inline">
+              RemixKit
+            </span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-auto">
-            <span className="text-xs text-neutral-500 hidden sm:inline max-w-[150px] truncate">{user?.email}</span>
+            <span className="text-xs text-neutral-500 hidden sm:inline max-w-[150px] truncate">
+              {user?.email}
+            </span>
             <Button
               variant="ghost"
               size="sm"
