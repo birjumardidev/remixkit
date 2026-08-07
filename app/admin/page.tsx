@@ -1,0 +1,448 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Upload,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+  Image as ImageIcon,
+  Wand2,
+  Sparkles,
+  X,
+  LogOut,
+} from "lucide-react";
+import { supabase, type Prompt } from "@/lib/supabase";
+import { CATEGORIES, categoryClass, categoryEmoji } from "@/lib/categories";
+import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/use-auth";
+import { AuthLogin } from "@/components/auth-login";
+import { Button } from "@/components/ui/button";
+
+type Status = "idle" | "uploading-image" | "saving" | "success" | "error";
+
+const STATUS_LABEL: Record<Exclude<Status, "idle">, string> = {
+  "uploading-image": "Uploading image...",
+  saving: "Saving prompt data...",
+  success: "Successfully published!",
+  error: "Something went wrong",
+};
+
+export default function AdminPage() {
+  const { user, loading, signOut } = useAuth();
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState(CATEGORIES[0].value);
+  const [promptText, setPromptText] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const [recent, setRecent] = useState<Prompt[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    loadRecent();
+  }, []);
+
+  async function loadRecent() {
+    const { data } = await supabase
+      .from("prompts")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(6);
+    setRecent((data as Prompt[]) ?? []);
+  }
+
+  function onFileChange(f: File | null) {
+    setFile(f);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(f ? URL.createObjectURL(f) : null);
+  }
+
+  function resetForm() {
+    setTitle("");
+    setCategory(CATEGORIES[0].value);
+    setPromptText("");
+    setFile(null);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  const canSubmit =
+    status !== "uploading-image" &&
+    status !== "saving" &&
+    title.trim() &&
+    promptText.trim() &&
+    file !== null;
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSubmit) return;
+
+    setStatus("uploading-image");
+    setErrorMsg(null);
+
+    try {
+      if (!file) throw new Error("Please choose an image.");
+      const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+      const fileName = `${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 9)}.${ext}`;
+      const filePath = `prompts/${fileName}`;
+
+      const { error: upErr } = await supabase.storage
+        .from("prompt-images")
+        .upload(filePath, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type || undefined,
+        });
+
+      if (upErr) throw new Error(`Image upload failed: ${upErr.message}`);
+
+      const { data: pub } = supabase.storage
+        .from("prompt-images")
+        .getPublicUrl(filePath);
+      const imageUrl = pub?.publicUrl ?? null;
+
+      setStatus("saving");
+
+      const { error: insErr } = await supabase.from("prompts").insert({
+        title: title.trim(),
+        prompt_text: promptText.trim(),
+        category,
+        image_url: imageUrl,
+      });
+
+      if (insErr) throw new Error(`Save failed: ${insErr.message}`);
+
+      setStatus("success");
+      resetForm();
+      await loadRecent();
+      setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 3500);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Unknown error");
+      setStatus("error");
+      setTimeout(() => setStatus((s) => (s === "error" ? "idle" : s)), 5000);
+    }
+  }
+
+  const busy = status === "uploading-image" || status === "saving";
+
+  // Show loading state while checking authentication
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
+          <p className="text-slate-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!user) {
+    return <AuthLogin />;
+  }
+
+  return (
+    <div className="min-h-screen bg-neutral-50">
+      <header className="sticky top-0 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Gallery
+          </Link>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900">
+              <Wand2 className="h-4 w-4 text-white" />
+            </div>
+            <span className="text-sm font-bold text-neutral-900">RemixKit</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-neutral-500">{user?.email}</span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => signOut()}
+              className="gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
+        <div className="mb-8">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+            <Sparkles className="h-3.5 w-3.5" />
+            Admin Panel
+          </div>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            Create a new pin
+          </h1>
+          <p className="mt-2 max-w-xl text-sm text-neutral-500">
+            Upload a preview image, write the prompt, and publish it to the
+            gallery.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
+          <form onSubmit={handleSubmit} className="form-card">
+            <label className="mb-2 block text-sm font-semibold text-neutral-800">
+              Preview Image
+            </label>
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault();
+                const f = e.dataTransfer.files?.[0];
+                if (f && f.type.startsWith("image/")) onFileChange(f);
+              }}
+              className={cn(
+                "group relative flex aspect-[16/10] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed transition-all",
+                previewUrl
+                  ? "border-neutral-400"
+                  : "border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50",
+              )}
+            >
+              {previewUrl ? (
+                <>
+                  <Image
+                    src={previewUrl}
+                    alt="Preview"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 transition group-hover:opacity-100" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                    <span className="rounded-lg bg-white/90 px-2.5 py-1 text-xs font-medium text-neutral-800 backdrop-blur">
+                      {file?.name}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onFileChange(null);
+                      }}
+                      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur transition hover:bg-white"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-col items-center gap-2 text-neutral-400">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 transition group-hover:bg-neutral-200">
+                    <Upload className="h-6 w-6 text-neutral-500" />
+                  </div>
+                  <span className="text-sm font-semibold text-neutral-600">
+                    Click or drag to upload
+                  </span>
+                  <span className="text-xs text-neutral-400">
+                    PNG, JPG, WEBP up to 10MB
+                  </span>
+                </div>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="absolute inset-0 z-50 h-full w-full cursor-pointer opacity-0 pointer-events-auto"
+                onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
+              />
+            </div>
+
+            <div className="mt-6">
+              <label
+                htmlFor="title"
+                className="mb-2 block text-sm font-semibold text-neutral-800"
+              >
+                Title
+              </label>
+              <input
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="e.g. Y2K Chrome Portrait"
+                className="form-input"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label
+                htmlFor="category"
+                className="mb-2 block text-sm font-semibold text-neutral-800"
+              >
+                Category
+              </label>
+              <div className="relative">
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="form-input appearance-none pr-10"
+                >
+                  {CATEGORIES.map((c) => (
+                    <option key={c.value} value={c.value}>
+                      {c.emoji} {c.label}
+                    </option>
+                  ))}
+                </select>
+                <svg
+                  className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label
+                htmlFor="prompt"
+                className="mb-2 block text-sm font-semibold text-neutral-800"
+              >
+                Prompt Text
+              </label>
+              <textarea
+                id="prompt"
+                value={promptText}
+                onChange={(e) => setPromptText(e.target.value)}
+                rows={6}
+                placeholder="Write the full AI image editing prompt here..."
+                className="form-input resize-none leading-relaxed"
+              />
+            </div>
+
+            {status !== "idle" && (
+              <div
+                className={cn(
+                  "mt-5 flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-sm font-medium",
+                  status === "success" &&
+                    "border-emerald-200 bg-emerald-50 text-emerald-700",
+                  status === "error" && "border-red-200 bg-red-50 text-red-700",
+                  (status === "uploading-image" || status === "saving") &&
+                    "border-neutral-200 bg-neutral-50 text-neutral-700",
+                )}
+              >
+                {status === "success" ? (
+                  <CheckCircle2 className="h-4 w-4 shrink-0" />
+                ) : status === "error" ? (
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                ) : (
+                  <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
+                )}
+                <span>
+                  {status === "error" && errorMsg
+                    ? errorMsg
+                    : STATUS_LABEL[status]}
+                </span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className={cn(
+                "mt-6 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition",
+                canSubmit
+                  ? "bg-neutral-900 text-white hover:bg-neutral-700"
+                  : "cursor-not-allowed bg-neutral-100 text-neutral-400",
+              )}
+            >
+              {busy ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  {
+                    STATUS_LABEL[
+                      status === "uploading-image"
+                        ? "uploading-image"
+                        : "saving"
+                    ]
+                  }
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-4 w-4" />
+                  Publish Pin
+                </>
+              )}
+            </button>
+          </form>
+
+          <aside className="space-y-4">
+            <h2 className="text-sm font-bold text-neutral-900">
+              Recently published
+            </h2>
+            {recent.length === 0 ? (
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6 text-center text-sm text-neutral-400">
+                No prompts published yet.
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {recent.map((p) => (
+                  <div
+                    key={p.id}
+                    className="flex gap-3 rounded-2xl border border-neutral-200 bg-white p-3 transition hover:shadow-sm"
+                  >
+                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
+                      {p.image_url ? (
+                        <Image
+                          src={p.image_url}
+                          alt={p.title}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-neutral-100">
+                          <ImageIcon className="h-5 w-5 text-neutral-300" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="line-clamp-1 text-sm font-semibold text-neutral-900">
+                        {p.title}
+                      </p>
+                      <span
+                        className={cn(
+                          "mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                          categoryClass(p.category),
+                        )}
+                      >
+                        {categoryEmoji(p.category)} {p.category}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </aside>
+        </div>
+      </main>
+    </div>
+  );
+}
