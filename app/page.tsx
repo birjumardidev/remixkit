@@ -202,6 +202,14 @@ function Header({
           />
         </div>
 
+        {/* Prompts link */}
+        <Link
+          href="/prompts"
+          className="btn-secondary hidden shrink-0 sm:inline-flex"
+        >
+          Browse Prompts
+        </Link>
+
         {/* Admin link */}
         <Link
           href="/admin"
@@ -268,12 +276,7 @@ function PinCard({
             <p className="line-clamp-2 text-sm font-semibold text-white drop-shadow">
               {prompt.title}
             </p>
-            <span
-              className={cn(
-                "mt-2 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold",
-                categoryClass(prompt.category),
-              )}
-            >
+            <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-neutral-900 shadow-sm ring-1 ring-white/80">
               {categoryEmoji(prompt.category)} {prompt.category}
             </span>
           </div>
