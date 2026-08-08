@@ -18,13 +18,14 @@ export default function RemovePeoplePage() {
             AI Prompt to Remove People from Photo
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Copy this prompt to erase people from a photo while reconstructing the background naturally.
+            Copy this prompt to erase people from a photo while reconstructing
+            the background naturally.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,9 @@ export default function RemovePeoplePage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            It focuses the AI on removing people while reconstructing the background in place. That avoids generating unrelated content and keeps the edit looking seamless.
+            It focuses the AI on removing people while reconstructing the
+            background in place. That avoids generating unrelated content and
+            keeps the edit looking seamless.
           </p>
         </section>
 
@@ -46,7 +49,9 @@ export default function RemovePeoplePage() {
             <li>Paste the prompt into your AI editor.</li>
             <li>Upload the original photo with people you want removed.</li>
             <li>Select an inpainting or background repair mode.</li>
-            <li>Run the edit and inspect the filled background for consistency.</li>
+            <li>
+              Run the edit and inspect the filled background for consistency.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +72,16 @@ export default function RemovePeoplePage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            The final image should show the scene without people, with natural background continuation and no obvious repairs. Shadows and textures should remain consistent with the original photo.
+            The final image should show the scene without people, with natural
+            background continuation and no obvious repairs. Shadows and textures
+            should remain consistent with the original photo.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/remove-elements/remove-watermark"

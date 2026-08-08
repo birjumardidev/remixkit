@@ -18,13 +18,14 @@ export default function SharpenBlurryPortraitPage() {
             AI Prompt to Sharpen Blurry Portrait
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Apply this prompt to improve a soft or unfocused portrait without creating an over-processed result.
+            Apply this prompt to improve a soft or unfocused portrait without
+            creating an over-processed result.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,9 @@ export default function SharpenBlurryPortraitPage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            It asks the model to sharpen details while preserving natural skin texture and lighting. This prevents the AI from producing overly smooth or artificial skin while improving clarity.
+            It asks the model to sharpen details while preserving natural skin
+            texture and lighting. This prevents the AI from producing overly
+            smooth or artificial skin while improving clarity.
           </p>
         </section>
 
@@ -46,7 +49,10 @@ export default function SharpenBlurryPortraitPage() {
             <li>Paste the prompt into your AI editor.</li>
             <li>Upload a portrait that needs sharpening.</li>
             <li>Choose a realistic or photography style.</li>
-            <li>Run the edit and verify facial details are clearer without harsh artifacts.</li>
+            <li>
+              Run the edit and verify facial details are clearer without harsh
+              artifacts.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +73,16 @@ export default function SharpenBlurryPortraitPage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            The edited image should show sharper eyes, lips, and hair without a plastic or oversmoothed finish. The subject should still look natural and not over-edited.
+            The edited image should show sharper eyes, lips, and hair without a
+            plastic or oversmoothed finish. The subject should still look
+            natural and not over-edited.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/portrait-enhancement/professional-headshot"

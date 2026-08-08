@@ -18,13 +18,14 @@ export default function MagazineCoverPage() {
             AI Prompt to Turn Photo into Magazine Cover
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Copy this prompt to turn any portrait into a high-end magazine cover edit with editorial lighting and refined styling.
+            Copy this prompt to turn any portrait into a high-end magazine cover
+            edit with editorial lighting and refined styling.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,9 @@ export default function MagazineCoverPage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            It gives the AI clear editorial direction while preserving the subject's presence. Adding magazine-style lighting and subtle design details makes the result feel polished, not overdone.
+            It gives the AI clear editorial direction while preserving the
+            subject&apos;s presence. Adding magazine-style lighting and subtle
+            design details makes the result feel polished, not overdone.
           </p>
         </section>
 
@@ -46,7 +49,9 @@ export default function MagazineCoverPage() {
             <li>Paste the prompt into your AI editor.</li>
             <li>Upload a portrait with good face visibility.</li>
             <li>Select a photography or editorial style.</li>
-            <li>Run the edit and check for strong lighting and a polished finish.</li>
+            <li>
+              Run the edit and check for strong lighting and a polished finish.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +72,16 @@ export default function MagazineCoverPage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            The final image should appear like a stylish magazine cover with polished skin, moody lighting, and a subtle editorial backdrop. It should remain natural and not overly filtered.
+            The final image should appear like a stylish magazine cover with
+            polished skin, moody lighting, and a subtle editorial backdrop. It
+            should remain natural and not overly filtered.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/creative-mood/cinematic-look"

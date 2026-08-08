@@ -18,13 +18,14 @@ export default function SunsetSkyPromptPage() {
             AI Prompt to Change Sky to Sunset
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Transform any outdoor photo by replacing the sky with a warm, cinematic sunset scene.
+            Transform any outdoor photo by replacing the sky with a warm,
+            cinematic sunset scene.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,10 @@ export default function SunsetSkyPromptPage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            The prompt directs the model to replace only the sky and maintain the subject, which helps prevent the tool from redesigning the whole scene. Including color tones and lighting cues makes the sunset look realistic.
+            The prompt directs the model to replace only the sky and maintain
+            the subject, which helps prevent the tool from redesigning the whole
+            scene. Including color tones and lighting cues makes the sunset look
+            realistic.
           </p>
         </section>
 
@@ -46,7 +50,9 @@ export default function SunsetSkyPromptPage() {
             <li>Paste the prompt into your AI editor.</li>
             <li>Upload the photo with a visible sky area.</li>
             <li>Choose a realistic or cinematic style.</li>
-            <li>Run the edit and verify the sky colors match the subject lighting.</li>
+            <li>
+              Run the edit and verify the sky colors match the subject lighting.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +73,16 @@ export default function SunsetSkyPromptPage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            Expect an edited sky with vivid pink and orange clouds, softer light, and a natural transition between the sky and foreground. The subject should retain original texture and color tones.
+            Expect an edited sky with vivid pink and orange clouds, softer
+            light, and a natural transition between the sky and foreground. The
+            subject should retain original texture and color tones.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/change-background/beach"

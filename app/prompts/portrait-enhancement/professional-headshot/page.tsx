@@ -18,13 +18,14 @@ export default function ProfessionalHeadshotPage() {
             AI Prompt to Make Selfie Look Professional Headshot
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Copy this prompt to turn a casual selfie into a clean, professional headshot with natural lighting and studio polish.
+            Copy this prompt to turn a casual selfie into a clean, professional
+            headshot with natural lighting and studio polish.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,10 @@ export default function ProfessionalHeadshotPage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            It instructs the model to keep the person’s natural features while applying studio-level lighting and background blur. That combination produces a professional result without making the face look over-processed.
+            It instructs the model to keep the person’s natural features while
+            applying studio-level lighting and background blur. That combination
+            produces a professional result without making the face look
+            over-processed.
           </p>
         </section>
 
@@ -46,7 +50,9 @@ export default function ProfessionalHeadshotPage() {
             <li>Paste the prompt into your AI tool.</li>
             <li>Upload a selfie and choose a headshot or portrait style.</li>
             <li>Select a clean backdrop or soft-focus background option.</li>
-            <li>Run the edit and check for clear facial detail and balanced light.</li>
+            <li>
+              Run the edit and check for clear facial detail and balanced light.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +73,16 @@ export default function ProfessionalHeadshotPage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            The edit should show a crisp, well-lit headshot with soft background blur and natural skin tones. The final image should look ready for LinkedIn, resumes, or corporate bios.
+            The edit should show a crisp, well-lit headshot with soft background
+            blur and natural skin tones. The final image should look ready for
+            LinkedIn, resumes, or corporate bios.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/portrait-enhancement/sharpen-blurry-portrait"

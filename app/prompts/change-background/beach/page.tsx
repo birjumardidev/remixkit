@@ -18,13 +18,14 @@ export default function BeachPromptPage() {
             AI Prompt to Replace Background with Beach
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600">
-            Use a ready-made prompt that turns any portrait or product photo into a realistic beach setting.
+            Use a ready-made prompt that turns any portrait or product photo
+            into a realistic beach setting.
           </p>
         </header>
 
         <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm font-semibold text-neutral-900">Prompt</p>
-          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200">
+          <pre className="mt-3 rounded-2xl bg-white p-5 text-sm text-neutral-700 ring-1 ring-neutral-200 whitespace-pre-wrap break-words">
             {promptText}
           </pre>
         </section>
@@ -34,7 +35,10 @@ export default function BeachPromptPage() {
             Why this prompt works
           </h2>
           <p className="text-neutral-600 leading-7">
-            It tells the model to preserve the original subject while adding specific beach details like sand, waves, and palm trees. The warm golden hour lighting reduces harshness and makes the transition appear natural.
+            It tells the model to preserve the original subject while adding
+            specific beach details like sand, waves, and palm trees. The warm
+            golden hour lighting reduces harshness and makes the transition
+            appear natural.
           </p>
         </section>
 
@@ -44,9 +48,13 @@ export default function BeachPromptPage() {
           </h2>
           <ol className="list-decimal space-y-3 pl-5 text-neutral-600 leading-7">
             <li>Paste the prompt into your AI editor.</li>
-            <li>Upload the photo and choose a clear, high-resolution result.</li>
+            <li>
+              Upload the photo and choose a clear, high-resolution result.
+            </li>
             <li>Select a style such as realistic, travel, or lifestyle.</li>
-            <li>Run the edit and verify the subject blends with the beach scene.</li>
+            <li>
+              Run the edit and verify the subject blends with the beach scene.
+            </li>
           </ol>
         </section>
 
@@ -67,12 +75,16 @@ export default function BeachPromptPage() {
             Example result
           </h2>
           <p className="text-neutral-600 leading-7">
-            The final output should look like the subject was photographed at the beach, with soft sand and ocean depth behind them, while keeping skin tones and details intact.
+            The final output should look like the subject was photographed at
+            the beach, with soft sand and ocean depth behind them, while keeping
+            skin tones and details intact.
           </p>
         </section>
 
         <section className="rounded-3xl border border-neutral-200 bg-white p-6">
-          <h2 className="text-xl font-semibold text-neutral-900">Related prompts</h2>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Related prompts
+          </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <a
               href="/prompts/change-background/office"
