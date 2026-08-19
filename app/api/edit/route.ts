@@ -94,11 +94,12 @@ export async function POST(request: Request) {
       .filter((key) => !selections[key])
       .map((key) => {
         if (key === "pose")
-          return "DO NOT describe the subject pose, position, framing, or camera angle.";
+          return "DO NOT describe the subject pose, position, or camera angle.";
         if (key === "background")
-          return "DO NOT describe the background, environment, or layout elements.";
+          return "DO NOT describe the background, environment.";
         if (key === "lighting")
           return "DO NOT describe lighting, color atmosphere, effects, or glow.";
+        if (key === "outfit")
         return "DO NOT describe clothing, accessories, jewelry, or styling.";
       })
       .join("\n");
@@ -147,7 +148,7 @@ export async function POST(request: Request) {
         - Never use terms like "sensual", "intimate", "erotic", or "bare skin". Use neutral terms like "warm aesthetic" or "cultural attire".
         - Do not use real brand or trademark names; describe visual elements generically.
         - Keep the subject description generic without inferring specific personal identities.
-        - Keep the final output under 150 words total.`,
+        - Keep the final output under 140 words total.`,
       }),
     });
 
