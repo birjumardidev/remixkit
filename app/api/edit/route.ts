@@ -127,7 +127,6 @@ export async function POST(request: Request) {
 
         - Core Medium & Style: Identify the exact style/medium (e.g., "Makoto Shinkai anime illustration", "1970s retro film poster", "Impressionist oil painting with impasto brushstrokes", "Cinematic portrait photograph").
         - Layout & Composition: Specify if it is a "Vintage Scrapbook Collage Layout" or "Layered Polaroid Aesthetic." Describe the exact frame count, shape, rotation, and stacked arrangement. Mention the background texture (e.g., aged paper, cardboard, newsprint).
-        - Frame count & grid structure: Describe the EXACT frame count and grid structure (e.g., "A 5-panel photo collage featuring thin white border dividers..."). Detail each panel's specific location and shot type.
         - Subject & Pose: Describe the character/subject, pose, action, and facial expression.
         - Lighting & Atmosphere: Detail light sources, color tones, backlighting, shadows, and mood.
         - Textures & Overlays: Specify paper textures, film grain, graphic widgets, handwriting script, or digital painterly effects.
@@ -144,7 +143,6 @@ export async function POST(request: Request) {
         - EXCLUSION RULES: ${ignored || "Extract all key visual details freely."}
 
         STRICT CONSTRAINTS:
-        - Be 100% accurate with panel count and spatial layout.
         - Always refer to the target subject strictly as "the subject", example - "cinematic portrait of the subject in this .." .
         - Never use terms like "sensual", "intimate", "erotic", or "bare skin". Use neutral terms like "warm aesthetic" or "cultural attire".
         - Do not use real brand or trademark names; describe visual elements generically.
