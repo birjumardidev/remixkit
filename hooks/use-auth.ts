@@ -35,25 +35,6 @@ export function useAuth() {
     return () => subscription?.unsubscribe();
   }, []);
 
-  const signUp = useCallback(async (email: string, password: string) => {
-    setError(null);
-    setLoading(true);
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      if (error) throw error;
-      return data;
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Sign up failed";
-      setError(message);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   const signIn = useCallback(async (email: string, password: string) => {
     setError(null);
     setLoading(true);
@@ -89,7 +70,6 @@ export function useAuth() {
     user,
     loading,
     error,
-    signUp,
     signIn,
     signOut,
   };

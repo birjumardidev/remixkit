@@ -158,59 +158,59 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50 selection:bg-violet-500 selection:text-white">
       <header className="sticky top-0 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:px-6 lg:max-w-6xl xl:max-w-7xl lg:px-8 lg:py-4">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900 flex-shrink-0"
+            className="flex items-center gap-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900 flex-shrink-0 lg:text-base"
           >
-            <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+            <ArrowLeft className="h-4 w-4 flex-shrink-0 lg:h-5 lg:w-5" />
             <span className="hidden sm:inline">Back to Gallery</span>
           </Link>
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 flex-shrink-0">
-              <Wand2 className="h-4 w-4 text-white" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 flex-shrink-0 lg:h-9 lg:w-9">
+              <Wand2 className="h-4 w-4 text-white lg:h-4.5 lg:w-4.5" />
             </div>
-            <span className="text-sm font-bold text-neutral-900 hidden sm:inline">
+            <span className="text-sm font-bold text-neutral-900 hidden sm:inline lg:text-base">
               RemixKit
             </span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-auto">
-            <span className="text-xs text-neutral-500 hidden sm:inline max-w-[150px] truncate">
+            <span className="text-xs text-neutral-500 hidden sm:inline max-w-[180px] truncate lg:text-sm">
               {user?.email}
             </span>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => signOut()}
-              className="gap-2 whitespace-nowrap"
+              className="gap-2 whitespace-nowrap lg:text-sm lg:px-4"
             >
-              <LogOut className="h-4 w-4 flex-shrink-0" />
+              <LogOut className="h-4 w-4 flex-shrink-0 lg:h-4.5 lg:w-4.5" />
               <span className="hidden sm:inline">Sign Out</span>
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
-        <div className="mb-8">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
-            <Sparkles className="h-3.5 w-3.5" />
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:max-w-6xl xl:max-w-7xl lg:px-8 lg:py-14">
+        <div className="mb-8 lg:mb-12">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 lg:text-sm">
+            <Sparkles className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
             Admin Panel
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
             Create a new pin
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-neutral-500">
+          <p className="mt-2 max-w-xl text-sm text-neutral-500 lg:text-base lg:max-w-2xl lg:mt-3">
             Upload a preview image, write the prompt, and publish it to the
             gallery.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
-          <form onSubmit={handleSubmit} className="form-card">
-            <label className="mb-2 block text-sm font-semibold text-neutral-800">
+        <div className="grid gap-8 lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_380px] lg:gap-10">
+          <form onSubmit={handleSubmit} className="form-card lg:p-8 xl:p-10 lg:rounded-3xl">
+            <label className="mb-2 block text-sm font-semibold text-neutral-800 lg:text-base">
               Preview Image
             </label>
             <div
@@ -222,7 +222,7 @@ export default function AdminPage() {
                 if (f && f.type.startsWith("image/")) onFileChange(f);
               }}
               className={cn(
-                "group relative flex aspect-[16/10] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed transition-all",
+                "group relative flex aspect-[16/10] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed transition-all lg:rounded-3xl",
                 previewUrl
                   ? "border-neutral-400"
                   : "border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50",
@@ -238,8 +238,8 @@ export default function AdminPage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 opacity-0 transition group-hover:opacity-100" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="rounded-lg bg-white/90 px-2.5 py-1 text-xs font-medium text-neutral-800 backdrop-blur">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between lg:bottom-4 lg:left-4 lg:right-4">
+                    <span className="rounded-lg bg-white/90 px-2.5 py-1 text-xs font-medium text-neutral-800 backdrop-blur lg:text-sm lg:px-3">
                       {file?.name}
                     </span>
                     <button
@@ -248,21 +248,21 @@ export default function AdminPage() {
                         e.stopPropagation();
                         onFileChange(null);
                       }}
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur transition hover:bg-white"
+                      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur transition hover:bg-white lg:h-9 lg:w-9"
                     >
                       <X className="h-4 w-4" />
                     </button>
                   </div>
                 </>
               ) : (
-                <div className="flex flex-col items-center gap-2 text-neutral-400">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 transition group-hover:bg-neutral-200">
-                    <Upload className="h-6 w-6 text-neutral-500" />
+                <div className="flex flex-col items-center gap-2 text-neutral-400 lg:gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 transition group-hover:bg-neutral-200 lg:h-16 lg:w-16">
+                    <Upload className="h-6 w-6 text-neutral-500 lg:h-7 lg:w-7" />
                   </div>
-                  <span className="text-sm font-semibold text-neutral-600">
+                  <span className="text-sm font-semibold text-neutral-600 lg:text-base">
                     Click or drag to upload
                   </span>
-                  <span className="text-xs text-neutral-400">
+                  <span className="text-xs text-neutral-400 lg:text-sm">
                     PNG, JPG, WEBP up to 10MB
                   </span>
                 </div>
@@ -276,10 +276,10 @@ export default function AdminPage() {
               />
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-8">
               <label
                 htmlFor="title"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 lg:text-base"
               >
                 Title
               </label>
@@ -287,15 +287,15 @@ export default function AdminPage() {
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Y2K Chrome Portrait"
-                className="form-input"
+                placeholder="e.g. Cartoon/Chibi Plush Portrait"
+                className="form-input lg:py-3.5 lg:text-base"
               />
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-8">
               <label
                 htmlFor="category"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 lg:text-base"
               >
                 Category
               </label>
@@ -304,7 +304,7 @@ export default function AdminPage() {
                   id="category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="form-input appearance-none pr-10"
+                  className="form-input appearance-none pr-10 lg:py-3.5 lg:text-base"
                 >
                   {CATEGORIES.map((c) => (
                     <option key={c.value} value={c.value}>
@@ -313,7 +313,7 @@ export default function AdminPage() {
                   ))}
                 </select>
                 <svg
-                  className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
+                  className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 lg:h-5 lg:w-5"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -324,10 +324,10 @@ export default function AdminPage() {
               </div>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-8">
               <label
                 htmlFor="prompt"
-                className="mb-2 block text-sm font-semibold text-neutral-800"
+                className="mb-2 block text-sm font-semibold text-neutral-800 lg:text-base"
               >
                 Prompt Text
               </label>
@@ -337,14 +337,14 @@ export default function AdminPage() {
                 onChange={(e) => setPromptText(e.target.value)}
                 rows={6}
                 placeholder="Write the full AI image editing prompt here..."
-                className="form-input resize-none leading-relaxed"
+                className="form-input resize-none leading-relaxed lg:p-4 lg:text-base"
               />
             </div>
 
             {status !== "idle" && (
               <div
                 className={cn(
-                  "mt-5 flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-sm font-medium",
+                  "mt-5 flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-sm font-medium lg:p-4 lg:text-base",
                   status === "success" &&
                     "border-emerald-200 bg-emerald-50 text-emerald-700",
                   status === "error" && "border-red-200 bg-red-50 text-red-700",
@@ -353,11 +353,11 @@ export default function AdminPage() {
                 )}
               >
                 {status === "success" ? (
-                  <CheckCircle2 className="h-4 w-4 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 lg:h-5 lg:w-5" />
                 ) : status === "error" ? (
-                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  <AlertCircle className="h-4 w-4 shrink-0 lg:h-5 lg:w-5" />
                 ) : (
-                  <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
+                  <Loader2 className="h-4 w-4 shrink-0 animate-spin lg:h-5 lg:w-5" />
                 )}
                 <span>
                   {status === "error" && errorMsg
@@ -371,7 +371,7 @@ export default function AdminPage() {
               type="submit"
               disabled={!canSubmit}
               className={cn(
-                "mt-6 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition",
+                "mt-6 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition lg:py-4 lg:text-base lg:font-bold",
                 canSubmit
                   ? "bg-neutral-900 text-white hover:bg-neutral-700"
                   : "cursor-not-allowed bg-neutral-100 text-neutral-400",
@@ -379,7 +379,7 @@ export default function AdminPage() {
             >
               {busy ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin lg:h-5 lg:w-5" />
                   {
                     STATUS_LABEL[
                       status === "uploading-image"
@@ -390,50 +390,50 @@ export default function AdminPage() {
                 </>
               ) : (
                 <>
-                  <Sparkles className="h-4 w-4" />
+                  <Sparkles className="h-4 w-4 lg:h-5 lg:w-5" />
                   Publish Pin
                 </>
               )}
             </button>
           </form>
 
-          <aside className="space-y-4">
-            <h2 className="text-sm font-bold text-neutral-900">
+          <aside className="space-y-4 lg:space-y-5">
+            <h2 className="text-sm font-bold text-neutral-900 lg:text-base">
               Recently published
             </h2>
             {recent.length === 0 ? (
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6 text-center text-sm text-neutral-400">
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6 text-center text-sm text-neutral-400 lg:p-8 lg:text-base lg:rounded-3xl">
                 No prompts published yet.
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-3 lg:space-y-4">
                 {recent.map((p) => (
                   <div
                     key={p.id}
-                    className="flex gap-3 rounded-2xl border border-neutral-200 bg-white p-3 transition hover:shadow-sm"
+                    className="flex gap-3 rounded-2xl border border-neutral-200 bg-white p-3 transition hover:shadow-sm lg:p-4 lg:rounded-2xl"
                   >
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
+                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl lg:h-20 lg:w-20">
                       {p.image_url ? (
                         <Image
                           src={p.image_url}
                           alt={p.title}
                           fill
-                          sizes="64px"
+                          sizes="80px"
                           className="object-cover"
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-neutral-100">
-                          <ImageIcon className="h-5 w-5 text-neutral-300" />
+                          <ImageIcon className="h-5 w-5 text-neutral-300 lg:h-6 lg:w-6" />
                         </div>
                       )}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="line-clamp-1 text-sm font-semibold text-neutral-900">
+                      <p className="line-clamp-1 text-sm font-semibold text-neutral-900 lg:text-base">
                         {p.title}
                       </p>
                       <span
                         className={cn(
-                          "mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                          "mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold lg:text-xs lg:px-2.5 lg:py-1",
                           categoryClass(p.category),
                         )}
                       >
