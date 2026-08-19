@@ -113,7 +113,7 @@ export async function POST(request: Request) {
         image_urls: [dataUrl],
         model: "google/gemini-2.5-flash",
         temperature: 0.3,
-        max_tokens: 250,
+        max_tokens: 280,
         system_prompt:
           "You are an expert AI prompt engineer and visual style analyst. Output strictly a single detailed image generation prompt or CONTENT_POLICY_VIOLATION. No introduction, conversational text, or markdown formatting.",
         prompt: `CONTENT ASSESSMENT & STYLE-ADAPTIVE PROMPT GENERATION:
@@ -149,7 +149,7 @@ export async function POST(request: Request) {
         - Never use terms like "sensual", "intimate", "erotic", or "bare skin". Use neutral terms like "warm aesthetic" or "cultural attire".
         - Do not use real brand or trademark names; describe visual elements generically.
         - Keep the subject description generic without inferring specific personal identities.
-        - Keep the final output under 200 words total.`,
+        - Keep the final output under 150 words total.`,
       }),
     });
 
