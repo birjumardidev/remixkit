@@ -15,28 +15,63 @@ try {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "RemixKit — AI Image Editing Prompts",
+  title: {
+    default: "RemixKit — AI Image Editing Prompts & Image to Prompt Generator",
+    template: "%s | RemixKit",
+  },
   description:
-    "Discover, copy, and publish trending AI image editing prompts — Cartoon/Chibi, cinematic, vinyl toy, golden hour, and A24 poster aesthetics.",
+    "Discover, copy, and publish trending AI image editing prompts, or upload photos to generate detailed prompts for Flux, Midjourney, and Nano Banana.",
+  keywords: [
+    "AI image prompts",
+    "image to prompt generator",
+    "Midjourney prompts",
+    "Flux prompts",
+    "Nano Banana prompts",
+    "AI photo editing",
+    "prompt library",
+  ],
+  authors: [{ name: "RemixKit Team" }],
+  creator: "RemixKit",
+  publisher: "RemixKit",
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "RemixKit — AI Image Editing Prompts",
+    title: "RemixKit — AI Image Editing Prompts & Generator",
     description:
-      "Discover, copy, and publish trending AI image editing prompts.",
+      "Discover trending AI image editing prompts or generate prompts directly from your images.",
     url: siteUrl,
     siteName: "RemixKit",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RemixKit — AI Image Editing Prompts",
+    title: "RemixKit — AI Image Editing Prompts & Generator",
     description:
-      "Discover, copy, and publish trending AI image editing prompts.",
+      "Discover trending AI image editing prompts or generate prompts directly from your images.",
+    images: [`${siteUrl}/og-image.png`],
   },
-  icons: [
-    { rel: "icon", url: "/icon.png" },
-    { rel: "shortcut icon", url: "/icon.png" },
-    { rel: "apple-touch-icon", url: "/icon.png" },
-  ],
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   manifest: "/site.webmanifest",
 };
 
