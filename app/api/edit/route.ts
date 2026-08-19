@@ -148,7 +148,8 @@ export async function POST(request: Request) {
         - Always refer to the target subject strictly as "the subject", example - "cinematic portrait of the subject in this .." .
         - Never use terms like "sensual", "intimate", "erotic", or "bare skin". Use neutral terms like "warm aesthetic" or "cultural attire".
         - Do not use real brand or trademark names; describe visual elements generically.
-        - Keep the subject description generic without inferring specific personal identities.`,
+        - Keep the subject description generic without inferring specific personal identities.
+        - Keep the final output under 200 words total.`,
       }),
     });
 
