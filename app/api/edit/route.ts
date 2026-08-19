@@ -112,7 +112,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         image_urls: [dataUrl],
         model: "google/gemini-2.5-flash",
-        temperature: 0.2,
+        temperature: 0.3,
         max_tokens: 250,
         system_prompt:
           "You are an expert AI prompt engineer and visual style analyst. Output strictly a single detailed image generation prompt or CONTENT_POLICY_VIOLATION. No introduction, conversational text, or markdown formatting.",
