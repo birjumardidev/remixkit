@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "RemixKit — AI Image Editing Prompts & Generator",
     description:
       "Discover trending AI image editing prompts or generate prompts directly from your images.",
-    images: [`${siteUrl}/og-image.png`],
+    images: ["https://www.remixkit.in/opengraph-image"],
   },
   icons: {
     icon: [
