@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { jakarta } from "@/lib/fonts";
+import { Analytics } from "@vercel/analytics/react";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.remixkit.in"
@@ -100,7 +101,7 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://imagedelivery.net" />
       </head>
-      <body className={`${jakarta.className} antialiased`}>{children}</body>
+      <body className={`${jakarta.className} antialiased`}>{children}<Analytics /></body>
     </html>
   );
 }
