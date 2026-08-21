@@ -133,10 +133,10 @@ export async function POST(request: Request) {
       Build a concise prompt under 150 words using this structure:
       - Core Medium & Layout: State the exact medium (e.g., photograph, anime illustration, digital painting) and layout structure (e.g., vertical slatted overlay, layered Polaroid aesthetic, sticker cutout). Specify frame count, shapes, and color modes per section (e.g., monochrome background with full-color subject).
       - Overlays & Graphics: Specify non-photo details like torn paper edges, masking tape, music UI, or handwritten script quotes.
-      - Subject & Pose: Describe the subject, shot angles across panels, poses, expressions, and traditional accessories (e.g., jhumka earrings, bangles, nose rings).
+      - Subject & Pose: Describe the subject, shot angles across panels, poses (with accurate side descriptions: right/left), expressions, and traditional accessories (e.g., jhumka earrings, bangles, nose rings).
       - Lighting, Atmosphere & Fine Details: Detail light sources (e.g., golden hour glow, red laser light, window blind shadows), color grading, fabric textures, and mood.
       - Typography & Text: If text is present, describe its style (e.g., cursive, serif, sans-serif) and placement (e.g., top-left corner, bottom-center).
-      
+
       4. USER SELECTIONS & CONSTRAINTS:
       - SELECTED FEATURES TO COPY: ${included.join(", ")}.  
       - EXCLUSION RULES: ${ignored || "Extract all key visual details freely."}
