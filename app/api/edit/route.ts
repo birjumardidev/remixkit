@@ -135,7 +135,8 @@ export async function POST(request: Request) {
       - Overlays & Graphics: Specify non-photo details like torn paper edges, masking tape, music UI, or handwritten script quotes.
       - Subject & Pose: Describe the subject, shot angles across panels, poses, expressions, and traditional accessories (e.g., jhumka earrings, bangles, nose rings).
       - Lighting, Atmosphere & Fine Details: Detail light sources (e.g., golden hour glow, red laser light, window blind shadows), color grading, fabric textures, and mood.
-
+      - Typography & Text: If text is present, describe its style (e.g., cursive, serif, sans-serif) and placement (e.g., top-left corner, bottom-center).
+      
       4. USER SELECTIONS & CONSTRAINTS:
       - SELECTED FEATURES TO COPY: ${included.join(", ")}.  
       - EXCLUSION RULES: ${ignored || "Extract all key visual details freely."}
