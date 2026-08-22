@@ -172,15 +172,15 @@ export default function GeneratePage() {
 
       <main className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-14 lg:max-w-6xl xl:max-w-7xl lg:px-8 lg:py-10">
         {/* Page header */}
-        <div className="mb-10 max-w-2xl lg:max-w-3xl lg:mb-14">
+        <div className="mb-10 max-w-2xl lg:max-w-3xl lg:mb-10">
           <p className="section-label lg:text-sm">
             <Sparkles className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
-            Image to prompt
+            Free Image to prompt
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
             Turn a look into the right words.
           </h1>
-          <p className="mt-4 text-base leading-7 text-neutral-500 lg:text-xl lg:leading-8">
+          <p className="mt-4 text-base leading-7 text-neutral-500 lg:text-l lg:leading-8">
             Upload a reference image, choose what to capture, then copy a
             ready-to-use prompt.
           </p>
@@ -188,7 +188,7 @@ export default function GeneratePage() {
 
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-10">
           {/* ── Step 1: Upload ─────────────────────────────── */}
-          <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-7 lg:rounded-3xl lg:p-9 xl:p-10">
+          <div className="rounded-2xl border border-neutral-300 bg-white p-6 shadow-sm sm:p-7 lg:rounded-3xl lg:p-9 xl:p-10">
             <Step
               n="01"
               title="Add your reference image"
@@ -203,7 +203,7 @@ export default function GeneratePage() {
                 setPhoto(e.dataTransfer.files[0]);
               }}
               onDragOver={(e) => e.preventDefault()}
-              className="mt-5 group flex aspect-[4/3] w-full flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-neutral-200 bg-neutral-50 p-4 transition-all duration-200 hover:border-violet-300 hover:bg-violet-50/30 lg:mt-7 lg:rounded-2xl lg:p-8"
+              className="mt-5 group flex aspect-[4/3] w-full flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-neutral-300 bg-neutral-50 p-4 transition-all duration-200 hover:border-violet-300 hover:bg-violet-50/30 lg:mt-7 lg:rounded-2xl lg:p-8"
             >
               {preview ? (
                 <div className="relative h-full w-full">
@@ -255,7 +255,7 @@ export default function GeneratePage() {
           </div>
 
           {/* ── Step 2: Options ────────────────────────────── */}
-          <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-7 lg:rounded-3xl lg:p-9 xl:p-10">
+          <div className="rounded-2xl border border-neutral-300 bg-white p-6 shadow-sm sm:p-7 lg:rounded-3xl lg:p-9 xl:p-10">
             <Step
               n="02"
               title="What should the prompt include?"
@@ -275,7 +275,7 @@ export default function GeneratePage() {
                   className={`flex items-center gap-2.5 sm:gap-3.5 rounded-xl border p-3 sm:p-4 text-left transition-all duration-200 lg:rounded-2xl lg:p-5 ${
                     selected[option.key]
                       ? "border-violet-300 bg-blue-900 text-white shadow-md shadow-blue-600/20"
-                      : "border-neutral-200 bg-white hover:border-neutral-300 hover:bg-neutral-50"
+                      : "border-neutral-300 bg-white hover:border-neutral-400 hover:bg-neutral-100"
                   }`}
                 >
                   <span
